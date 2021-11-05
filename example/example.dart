@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage>
     tabController = TabController(length: 3, vsync: this);
   }
 
-  TabController tabController;
+  TabController? tabController;
 
   static List<String> links = [
     "https://i.pinimg.com/originals/cc/18/8c/cc188c604e58cffd36e1d183c7198d21.jpg",
@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(widget.title!),
         ),
         body: Column(
           children: [
@@ -113,38 +113,38 @@ class _MyHomePageState extends State<MyHomePage>
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                tabController.index == 0
+                tabController!.index == 0
                     ? Container(
                         width: 0,
                         height: 0,
                       )
                     : RaisedButton(
                         onPressed: () {
-                          tabController.animateTo(tabController.index - 1);
+                          tabController!.animateTo(tabController!.index - 1);
                           setState(() {});
                         },
                         child: Text("Previous"),
                       ),
-                tabController.index == 2
+                tabController!.index == 2
                     ? Container(
                         width: 0,
                         height: 0,
                       )
                     : RaisedButton(
                         onPressed: () {
-                          tabController.animateTo(2);
+                          tabController!.animateTo(2);
                           setState(() {});
                         },
                         child: Text("Skip"),
                       ),
-                tabController.index == 2
+                tabController!.index == 2
                     ? Container(
                         width: 0,
                         height: 0,
                       )
                     : RaisedButton(
                         onPressed: () {
-                          tabController.animateTo(tabController.index + 1);
+                          tabController!.animateTo(tabController!.index + 1);
                           setState(() {});
                         },
                         child: Text("Next"),

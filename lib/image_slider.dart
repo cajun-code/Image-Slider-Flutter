@@ -12,7 +12,7 @@ class ImageSlider extends StatefulWidget {
   final bool allowManualSlide;
 
   /// Animation curves of sliding
-  final Curve curve;
+  final Curve? curve;
 
   /// Time for automatic sliding
   final Duration duration;
@@ -39,13 +39,13 @@ class ImageSlider extends StatefulWidget {
   final double tabIndicatorHeight;
 
   /// tabController for walkthrough or other implementations
-  final TabController tabController;
+  final TabController? tabController;
 
   ImageSlider(
-      {Key key,
-      @required this.children,
-      @required this.width,
-      @required this.height,
+      {Key? key,
+      required this.children,
+      required this.width,
+      required this.height,
       this.curve,
       this.tabIndicatorColor = Colors.white,
       this.tabIndicatorSelectedColor = Colors.black,
@@ -54,7 +54,7 @@ class ImageSlider extends StatefulWidget {
       this.allowManualSlide = true,
       this.autoSlide = false,
       this.showTabIndicator = false,
-      @required this.tabController,
+      required this.tabController,
       this.duration = const Duration(seconds: 3)}) : super(key: key);
 
   @override
@@ -82,7 +82,7 @@ class _ImageSliderState extends State<ImageSlider>
     super.didUpdateWidget(oldWidget);
     
     if ((!widget.autoSlide) && (timer != null)) {
-      timer.cancel();
+      timer!.cancel();
       timer = null;
     } else if ((widget.autoSlide) && (timer == null)) {
       _startTimer();
@@ -91,9 +91,9 @@ class _ImageSliderState extends State<ImageSlider>
 
   _startTimer() {
     timer = Timer.periodic(widget.duration, (Timer t) {
-      widget.tabController.animateTo(
-          (widget.tabController.index + 1) % widget.tabController.length,
-          curve: widget.curve);
+      widget.tabController!.animateTo(
+          (widget.tabController!.index + 1) % widget.tabController!.length,
+          curve: widget.curve!);
     });
   }
 
@@ -103,8 +103,8 @@ class _ImageSliderState extends State<ImageSlider>
   }
 
 //Declared Timer and physics.
-  Timer timer;
-  ScrollPhysics scrollPhysics;
+  Timer? timer;
+  ScrollPhysics? scrollPhysics;
 
   @override
   Widget build(BuildContext context) {
